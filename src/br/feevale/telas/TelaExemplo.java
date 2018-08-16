@@ -18,7 +18,7 @@ public class TelaExemplo extends JFrame {
 		// 1 passo: criar o objeto
 		JLabel lbl = new JLabel( "Prog III - Feevale" );
 		// 2 passo: adicionar ao container
-		//container.add( lbl );
+		container.add( lbl );
 		// 3 passo: dimensiono e posiciono o elemento
 		lbl.setBounds( 400, 300, 200, 23 );
 		
