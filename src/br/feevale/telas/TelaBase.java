@@ -4,50 +4,37 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
-import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;
 
-public class TelaExemplo extends JFrame {
+public class TelaBase extends JFrame {
 	
 	private int tamLinha = 30;
 	private int margem = 30;
 	private int tamColuna = ( 800 - ( 2 * 30 ) )/12;
 	
-	public TelaExemplo() {
+	public TelaBase( int x, int y, String titulo ) {
+		
+		setBounds( x, y, 800, 450 );
+
+		setLayout( null );
+		Container container = getContentPane();
+
+		setTituloDoPrograma( titulo );
+		
+		setDefaultCloseOperation( DISPOSE_ON_CLOSE );
+	}
+	
+	public TelaBase( String titulo ) {
 		
 		setBounds( 120, 100, 800, 450 );
 
 		setLayout( null );
 		Container container = getContentPane();
 
-		setTituloDoPrograma( "Feevale - Prog III" );
+		setTituloDoPrograma( titulo );
 		
-		addLabel( 1,  4, "Codigo" );
-		addLabel( 5,  4, "Nome" );
-		addLabel( 1,  5, "Logradouro" );
-		
-		JRadioButton rb1 = new JRadioButton( "Colorado" );
-		rb1.setBounds( 200, 150, 120, 23 );
-		container.add( rb1 );
-
-		JRadioButton rb2 = new JRadioButton( "Fluminense" );
-		rb2.setBounds( 200, 180, 120, 23 );
-		container.add( rb2 );
-
-		JRadioButton rb3 = new JRadioButton( "Novo Hamburgo" );
-		rb3.setBounds( 200, 210, 120, 23 );
-		container.add( rb3 );
-		
-		ButtonGroup bg = new ButtonGroup();
-		bg.add( rb1 );
-		bg.add( rb2 );
-		bg.add( rb3 );
-		
-		setVisible( true );
 		setDefaultCloseOperation( DISPOSE_ON_CLOSE );
 	}
 	
