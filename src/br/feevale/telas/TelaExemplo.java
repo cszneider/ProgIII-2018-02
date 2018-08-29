@@ -5,6 +5,8 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -14,11 +16,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.SwingConstants;
 
-public class TelaExemplo extends JFrame implements ActionListener {
+public class TelaExemplo extends JFrame implements ActionListener, MouseListener {
 	
 	private int tamLinha = 30;
 	private int margem = 30;
 	private int tamColuna = ( 800 - ( 2 * 30 ) )/12;
+	
+	private Color corOriginalDoBotao;
 	
 	public TelaExemplo() {
 		
@@ -51,7 +55,7 @@ public class TelaExemplo extends JFrame implements ActionListener {
 		bg.add( rb3 );
 		
 		JButton bt = new JButton( "Ação 1" );
-		bt.setBounds( 550, 350, 120, 30 );
+		bt.setBounds( 545, 350, 120, 30 );
 		container.add( bt );
 		
 		// Para adicionar qualquer monitor (listener) a um elemento,
@@ -65,12 +69,33 @@ public class TelaExemplo extends JFrame implements ActionListener {
 		//    - para nosso exemplos, faremos a conexao com o botão:
 		
 		bt.addActionListener( this );
+		bt.addMouseListener( this );
+		bt.setOpaque( true );
 		
+		bt = new JButton( "Ação 2" );
+		bt.setBounds( 665, 350, 120, 30 );
+		container.add( bt );
+		bt.setOpaque( true );
+		
+		bt.addActionListener( new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				executaAcaoDoSegundoBotao( e );
+			}
+		} );
+		
+		bt.addMouseListener( this );
 		
 		setVisible( true );
 		setDefaultCloseOperation( DISPOSE_ON_CLOSE );
 	}
 	
+	protected void executaAcaoDoSegundoBotao(ActionEvent e) {
+
+		JOptionPane.showMessageDialog( null, "Este é a ação associada ao segundo botão" );
+	}
+
 	private void setTituloDoPrograma( String titulo ) {
 
 		Color cor = new Color( 173, 255, 77 );
@@ -121,6 +146,35 @@ public class TelaExemplo extends JFrame implements ActionListener {
 	public void actionPerformed( ActionEvent e ) {
 
 		JOptionPane.showMessageDialog( null, "Hello World!" );
+	}
+
+	@Override
+	public void mouseClicked( MouseEvent e ) {}
+
+	@Override
+	public void mousePressed( MouseEvent e ) {}
+
+	@Override
+	public void mouseReleased( MouseEvent e ) {}
+
+	@Override
+	public void mouseEntered( MouseEvent e ) {
+		
+		System.out.println( "****************" );
+		JButton bt = (JButton) e.getSource();
+		corOriginalDoBotao = bt.getBackground();
+		
+		System.out.println( bt.getText() );
+		
+		bt.setBackground( Color.RED );
+	}
+
+	@Override
+	public void mouseExited( MouseEvent e ) {
+
+		System.out.println( "#############" );
+		JButton bt = (JButton) e.getSource();
+		bt.setBackground( corOriginalDoBotao );
 	}
 }
 
