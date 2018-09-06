@@ -3,16 +3,22 @@ package br.feevale.telas;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class TelaBase extends JFrame {
+public class TelaBase extends JFrame implements FocusListener {
 	
 	private int tamLinha = 30;
 	private int margem = 30;
 	private int tamColuna = ( 800 - ( 2 * 30 ) )/12;
+	
+	private Color corFundoCampoTexto = new Color( 230, 230, 230 );
 	
 	public TelaBase( int x, int y, String titulo ) {
 		
@@ -57,6 +63,36 @@ public class TelaBase extends JFrame {
 		lbl.setHorizontalAlignment( SwingConstants.CENTER );
 	}
 
+	public JTextField addCampoTexto( int coluna, int linha, int colunas ) {
+		return addCampoTexto( coluna, linha, colunas, null );
+	}
+	
+	public JTextField addCampoTexto( int coluna, int linha, int colunas, String texto ) {
+		
+		int x = xDaColuna( coluna );
+		int y = yDaLinha( linha );
+		
+		JTextField l = new JTextField( texto );
+		l.setBounds( x, y, colunas * tamColuna, tamLinha );
+		getContentPane().add( l );
+		
+		l.addFocusListener( this );
+		
+		return l;
+	}
+
+	public JButton addBotao( int coluna, int linha, int colunas, String texto ) {
+		
+		int x = xDaColuna( coluna );
+		int y = yDaLinha( linha );
+		
+		JButton l = new JButton( texto );
+		l.setBounds( x, y, colunas * tamColuna, tamLinha );
+		getContentPane().add( l );
+		
+		return l;
+	}
+
 	public JLabel addLabel( int coluna, int linha, String texto ) {
 		 
 		int x = xDaColuna( coluna );
@@ -80,6 +116,22 @@ public class TelaBase extends JFrame {
 
 	public static void main(String[] args) {
 		new TelaExemplo();
+	}
+
+	@Override
+	public void focusGained(FocusEvent e) {
+
+		JTextField tf = (JTextField) e.getSource();
+		tf.setBackground( corFundoCampoTexto );
+		tf.setForeground( Color.RED );
+	}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+
+		JTextField tf = (JTextField) e.getSource();
+		tf.setBackground( Color.WHITE );
+		tf.setForeground( Color.BLACK );
 	}
 }
 

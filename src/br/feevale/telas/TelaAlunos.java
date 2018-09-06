@@ -7,6 +7,10 @@ public class TelaAlunos extends TelaBase {
 		
 		addLabel( 5, 7, "Esta é a Tela Alunos" );
 		
+		addCampoTexto( 3, 4, 10 );
+		addCampoTexto( 3, 5, 10 );
+		addCampoTexto( 3, 6, 10 );
+		
 		setVisible( true );
 	}
 	
