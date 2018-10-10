@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Arquivo de Parametros do Sistema</comment>
+<entry key="urlBanco">jdbc:postgresq://192.168.2.27:5432/PgIII</entry>
+<entry key="senha">masterkey</entry>
+<entry key="driverJdbc">org.postgresql.Driver</entry>
+<entry key="cnpj">00111222000133</entry>
+<entry key="nrSala">Prédio Multi - 505</entry>
+<entry key="nomeUsuario">postgres</entry>
+<entry key="razaoSocial">Schneider &amp; CO incorporadora Ltda</entry>
+</properties>
