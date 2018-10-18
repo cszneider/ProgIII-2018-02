@@ -1,4 +1,4 @@
-package br.DBAccess;
+package br.feevale.DBAccess;
 
 import java.io.IOException;
 
